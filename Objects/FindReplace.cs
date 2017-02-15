@@ -5,20 +5,46 @@ namespace FindReplaceApp
 {
     public class FindReplace
     {
-        [Fact]
-        public void Replace_ReplaceWord_NewString()
+        private string _sentence;
+        private string _findWord;
+        private string _replaceWord;
+
+        public FindReplace(string sentence, string findWord, string replaceWord)
         {
-            //Arrange
-            string sentence = "Hello world";
-            string findWord = "world";
-            string replaceWord = "universe";
+            _sentence = sentence;
+            _findWord = findWord;
+            _replaceWord = replaceWord;
+        }
 
-            //Act
-            FindReplace findReplaceTest = new FindReplace(sentence, findWord, replaceWord);
-            string result = findReplaceTest.Replace();
+        public string Getsentence()
+        {
+            return _sentence;
+        }
 
-            //Assert
-            Assert.Equal("Hello universe", result);
+        public string GetfindWord()
+        {
+            return _findWord;
+        }
+
+        public string GetreplaceWord()
+        {
+            return _replaceWord;
+        }
+
+        public string Replacein()
+        {
+            string sentence = Getsentence();
+            string sentenceLower = Getsentence().ToLower();
+            string findWord = GetfindWord().ToLower();
+            string replaceWord = GetreplaceWord().ToLower();
+            string result = "Error: word not found in sentence";
+
+            if (sentence.Contains(findWord))
+            {
+                result = sentence.Replace(findWord, replaceWord);
+            }
+
+            return result;
         }
     }
 }
